@@ -14,9 +14,9 @@ public class PokemonTest {
         Pokemon bulbasaur = new Pokemon("Bulbasaur", Type.POISON);
 
         // Link Pokémon to trainer
-        pikachu.link_to_trainer(trainer);
-        charmander.link_to_trainer(trainer);
-        bulbasaur.link_to_trainer(trainer);
+        pikachu.linkToTrainer(trainer);
+        charmander.linkToTrainer(trainer);
+        bulbasaur.linkToTrainer(trainer);
 
         // Display trainer details
         trainer.listPokemons();
@@ -44,9 +44,9 @@ public class PokemonTest {
         Pokemon bulbasaur = new Pokemon("Bulbasaur", Type.GRASS);
 
         // Link Pokémon to trainers
-        pikachu.link_to_trainer(trainer1);
-        charmander.link_to_trainer(trainer2);
-        bulbasaur.link_to_trainer(trainer2);
+        pikachu.linkToTrainer(trainer1);
+        charmander.linkToTrainer(trainer2);
+        bulbasaur.linkToTrainer(trainer2);
 
         pikachu.setSwapAllowed(true);
         charmander.setSwapAllowed(true);

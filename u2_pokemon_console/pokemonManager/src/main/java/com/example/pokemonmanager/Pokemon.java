@@ -1,6 +1,5 @@
 package com.example.pokemonmanager;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Pokemon {
 
@@ -24,7 +23,7 @@ public class Pokemon {
     }
 
     //return false if pokemon is already linked to a trainer.
-    public boolean link_to_trainer(Trainer trainer){
+    public boolean linkToTrainer(Trainer trainer){
         if (this.trainer == null){
             this.trainer = trainer;
             trainer.addPokemon(this);
