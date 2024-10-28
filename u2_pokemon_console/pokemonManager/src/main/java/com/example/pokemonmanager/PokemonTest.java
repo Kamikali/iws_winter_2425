@@ -2,11 +2,10 @@ package com.example.pokemonmanager;
 
 public class PokemonTest {
     public static void main(String[] args) {
-
+        test21(); //method names are shitty because of sonar lint. would have called them task_2_1x etc
+        test22();
     }
-
-
-    private static void test_2_1(){
+    private static void test21(){
         // Test 1: Create a trainer and add Pokémon
         Trainer trainer = new Trainer("John", "Mayer");
 
@@ -35,7 +34,7 @@ public class PokemonTest {
         trainer.listPokemonsByType(Type.WATER); // None
     }
 
-    private static void test_2_2(){
+    private static void test22(){
         // Test 1: Create trainers and Pokémon
         Trainer trainer1 = new Trainer("John", "Mayer");
         Trainer trainer2 = new Trainer("Jane", "Doe");
