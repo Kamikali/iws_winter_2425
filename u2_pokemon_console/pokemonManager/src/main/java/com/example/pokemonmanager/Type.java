@@ -1,5 +1,5 @@
 package com.example.pokemonmanager;
 
 public enum Type {
-    FIRE, WATER, POISON
+    FIRE, WATER, POISON, ELECTRIC, GRASS,
 }

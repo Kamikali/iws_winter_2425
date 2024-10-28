@@ -2,50 +2,83 @@ package com.example.pokemonmanager;
 
 public class PokemonTest {
     public static void main(String[] args) {
-        // https://de.wikipedia.org/wiki/Liste_der_Pok%C3%A9mon
-        // Test of Constructor with each Type
-        System.out.println("Testen des Konstruktors");
-        Pokemon p0 = new Pokemon("Pikachu", Type.POISON);
-        System.out.println("Pokemon p0 angelegt mit Name Pikachu und Typ Poison");
-        Pokemon p1 = new Pokemon("Carapuce", Type.WATER);
-        System.out.println("Pokemon p1 angelegt mit Name Carapuce und Typ Water");
-        Pokemon p2 = new Pokemon("Raupy", Type.FIRE);
-        System.out.println("Pokemon p2 angelegt mit Name Raupy und Typ Fire");
 
-        // Test of toString and check if each Pokemon is constructed right
-        System.out.println();
-        System.out.println("Testen von toString und ob alle Pokemon richtig angelegt wurden");
-        System.out.println("Pokemon p0:");
-        System.out.println(p0);
-        System.out.println("Pokemon p1:");
-        System.out.println(p1);
-        System.out.println("Pokemon p2:");
-        System.out.println(p2);
+    }
 
-        // Test of getter and setter of name
-        System.out.println();
-        System.out.println("Testen von getName");
-        System.out.println("Name von Pokemon p1:");
-        System.out.println(p1.getName());
-        System.out.println("Testen von setName");
-        System.out.println("Name von p1 zu Schiggy ändern:");
-        p1.setName("Schiggy");
-        System.out.println(p1);
 
-        // Test of getter and setter of type
-        System.out.println();
-        System.out.println("Testen von getType");
-        System.out.println("Typ von Pokemon p2:");
-        System.out.println(p2.getType());
-        System.out.println("Testen von setType");
-        System.out.println("Typ von p2 zu Water ändern");
-        p2.setType(Type.WATER);
-        System.out.println(p2);
+    private static void test_2_1(){
+        // Test 1: Create a trainer and add Pokémon
+        Trainer trainer = new Trainer("John", "Mayer");
 
-        // Test of getter of number (no setter available, because it should not be
-        // changed)
-        System.out.println();
-        System.out.println("Testen von getNumber");
-        System.out.println("Nummer von p2: " + p2.getNumber());
+        Pokemon pikachu = new Pokemon("Pikachu", Type.ELECTRIC);
+        Pokemon charmander = new Pokemon("Charmander", Type.FIRE);
+        Pokemon bulbasaur = new Pokemon("Bulbasaur", Type.POISON);
+
+        // Link Pokémon to trainer
+        pikachu.link_to_trainer(trainer);
+        charmander.link_to_trainer(trainer);
+        bulbasaur.link_to_trainer(trainer);
+
+        // Display trainer details
+        trainer.listPokemons();
+
+        // Test 2: List Pokémon by type
+        trainer.listPokemonsByType(Type.FIRE);
+
+        // Test 3: Show Pokémon at a specific index
+        trainer.showPokemon(0); // pikachu
+
+        // Test 4: Show Pokémon at an invalid index
+        trainer.showPokemon(3); // invalid index
+
+        // Test 5: List Pokémon of a type that doesn't exist
+        trainer.listPokemonsByType(Type.WATER); // None
+    }
+
+    private static void test_2_2(){
+        // Test 1: Create trainers and Pokémon
+        Trainer trainer1 = new Trainer("John", "Mayer");
+        Trainer trainer2 = new Trainer("Jane", "Doe");
+
+        Pokemon pikachu = new Pokemon("Pikachu", Type.ELECTRIC);
+        Pokemon charmander = new Pokemon("Charmander", Type.FIRE);
+        Pokemon bulbasaur = new Pokemon("Bulbasaur", Type.GRASS);
+
+        // Link Pokémon to trainers
+        pikachu.link_to_trainer(trainer1);
+        charmander.link_to_trainer(trainer2);
+        bulbasaur.link_to_trainer(trainer2);
+
+        pikachu.setSwapAllowed(true);
+        charmander.setSwapAllowed(true);
+
+        // Test 2: Swap Pokémon that are allowed to swap
+        System.out.println("Test 1: Swap Pikachu with Charmander:");
+        try {
+            Swap swap1 = new Swap(trainer1, trainer2, pikachu, charmander);
+            swap1.execute();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        // Test 3: Attempt to swap Pokémon that are not allowed to swap
+        System.out.println("\nTest 2: Attempt to swap Bulbasaur (not allowed) with Charmander:");
+        bulbasaur.setSwapAllowed(false); // Bulbasaur is not allowed to swap
+        try {
+            Swap swap2 = new Swap(trainer2, trainer1, bulbasaur, charmander);
+            swap2.execute();
+        } catch (Exception e) {
+            System.out.println(e.getMessage()); // Should show the not allowed message
+        }
+
+        // Test 4: Attempt to swap Pokémon from the same trainer
+        bulbasaur.setSwapAllowed(true);
+        System.out.println("\nTest 3: Attempt to swap Pikachu with Bulbasaur (same trainer):");
+        try {
+            Swap swap3 = new Swap(trainer2, trainer2, bulbasaur, pikachu);
+            swap3.execute();
+        } catch (Exception e) {
+            System.out.println(e.getMessage()); // Should show the same trainer message
+        }
     }
 }
