@@ -11,7 +11,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.List;
 
 import de.uhd.ifi.pokemonmanager.R;
+import de.uhd.ifi.pokemonmanager.data.Competition;
 import de.uhd.ifi.pokemonmanager.data.Pokemon;
+import de.uhd.ifi.pokemonmanager.data.Swap;
 import de.uhd.ifi.pokemonmanager.data.Trainer;
 import de.uhd.ifi.pokemonmanager.data.Type;
 import de.uhd.ifi.pokemonmanager.storage.SerialStorage;
@@ -65,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
     /**
      * Creates three sample {@link Pokemon} if none are in storage.
      */
@@ -87,9 +90,20 @@ public class MainActivity extends AppCompatActivity {
             STORAGE.save(p3);
             STORAGE.save(t1);
             STORAGE.save(t2);
+
+            Swap s1 = new Swap();
+            s1.execute(p1, p3);
+
+            Competition c1 = new Competition();
+            c1.execute(p1, p3);
+
+            STORAGE.save(s1);
+            STORAGE.save(c1);
             STORAGE.saveAll(this);
         }
     }
+
+
 
     @Override
     protected void onResume() {
@@ -98,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
         createSampleDataIfNecessary();
         pokemonAdapter.refresh();
     }
+
 
     @Override
     protected void onPause() {

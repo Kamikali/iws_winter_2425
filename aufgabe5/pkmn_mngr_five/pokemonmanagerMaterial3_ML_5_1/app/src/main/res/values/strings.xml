@@ -47,4 +47,6 @@
     <string name="firstname">First name</string>
     <string name="lastname">Last name</string>
     <string name="warning_non_empty_name">first and last name must be non-empty</string>
+    <string name="deleted_pokemon">deleted Pokemon</string>
+    <string name="save_changes">save changes</string>
 </resources>

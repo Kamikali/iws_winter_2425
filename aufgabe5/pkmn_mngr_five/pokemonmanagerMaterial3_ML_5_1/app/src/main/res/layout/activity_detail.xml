@@ -60,7 +60,6 @@
                 android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
         </com.google.android.material.textfield.TextInputLayout>
 
-
         <TextView
             android:id="@+id/swapAllowText"
             android:layout_width="match_parent"
@@ -74,6 +73,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="8dp" />
+
+        <!-- Save Changes Button Added Here -->
+        <Button
+            android:id="@+id/saveChangesButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/save_changes" />
 
         <TextView
             android:id="@+id/swapsText"

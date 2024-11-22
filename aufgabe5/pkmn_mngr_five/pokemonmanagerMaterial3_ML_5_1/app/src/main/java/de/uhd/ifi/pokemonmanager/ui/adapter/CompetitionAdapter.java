@@ -68,12 +68,20 @@ class CompetitionHolder extends RecyclerView.ViewHolder {
         itemView.setTag(this);
     }
 
-    void setCompetition(Competition competition, Pokemon pokemon) {
+    void setCompetition(Competition competition, @NonNull Pokemon pokemon) {
         this.competitionDateText.setText(formatter.format(competition.getDate()));
-        if (competition.getSourcePokemon().equals(pokemon)) {
-            this.competitionOpponent.setText(competition.getTargetPokemon().getName());
+        if (pokemon.equals(competition.getSourcePokemon())) {
+            if (competition.getTargetPokemon() == null) {
+                this.competitionOpponent.setText(R.string.deleted_pokemon);
+            } else {
+                this.competitionOpponent.setText(competition.getTargetPokemon().getName());
+            }
         } else {
-            this.competitionOpponent.setText(competition.getSourcePokemon().getName());
+            if (competition.getSourcePokemon() == null) {
+                this.competitionOpponent.setText(R.string.deleted_pokemon);
+            } else {
+                this.competitionOpponent.setText(competition.getSourcePokemon().getName());
+            }
         }
         if (competition.getWinner().equals(pokemon)) {
             this.competitionResult.setText(R.string.competition_won);
